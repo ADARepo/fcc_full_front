@@ -10,7 +10,7 @@ function App()
 	const [query, setQuery] = useState('');
 
 	const getMovies = async() => {
-		const response = await Axios.get("http://localhost:8080/api/v1/movies");
+		const response = await Axios.get("http://localhost:8080/api/v1/movies/");
 
 		const list = []
 		
@@ -27,6 +27,7 @@ function App()
 	}
 
 	const search = async(query) => {
+		console.log(query);
 		setQuery(query);
 		console.log("http://localhost:8080/api/v1/movies/" + query);
         const response = await Axios.get("http://localhost:8080/api/v1/movies/" + query);
