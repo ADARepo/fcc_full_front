@@ -7,6 +7,7 @@ import SearchBar from './movie/SearchBar';
 function App() 
 {
 	const [movies, setMovies] = useState();
+	const [query, setQuery] = useState('');
 
 	const getMovies = async() => {
 		const response = await Axios.get("http://localhost:8080/api/v1/movies");
@@ -25,15 +26,34 @@ function App()
 		setMovies(list);
 	}
 
+	const search = async(query) => {
+		setQuery(query);
+		console.log("http://localhost:8080/api/v1/movies/" + query);
+        const response = await Axios.get("http://localhost:8080/api/v1/movies/" + query);
+
+		console.log(response);
+		const list = []
+		
+		// reviewIds is an object containing the review for the movie. need to parse out more to show.
+		response.data.forEach((item, index) =>{
+			list.push(
+				<div key = {index}>
+					{setupPoster(item)}
+				</div>
+			);
+		})
+		console.log(list)
+		setMovies(list);
+    }
+
 	useEffect (() => {
 		getMovies()
 	}, [])
 
 	return (
 		<div className="background-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-			<SearchBar />
-			<div className="search-area" >
-				<br></br>
+			<SearchBar query={query} setQuery={search}/>
+			<div className="search-area" >	
 				{movies}
 			</div>
 		</div>

@@ -1,21 +1,16 @@
-import {useState, useEffect} from 'react';
+import React from 'react';
 
-function SearchBar() {
-    const [query, setQuery] = useState('');
+function SearchBar(props) {
+    
 
     const handleInputChange = (event) => {
-        setQuery(event.target.value);
-    }
-
-    const handleSearch = () => {
-        // Perform search functionality with query
-        console.log(`Search for "${query}"`);
+        props.setQuery(event.target.value);
     }
 
     return (
         <div>
-            <input type="text" value={query} onChange={handleInputChange} />
-            <button onClick={handleSearch}>Search</button>
+            <input type="text" value={props.query} onChange={handleInputChange} />
+            {/* <button onClick={search}>Search</button> */}
         </div>
     );
 }
