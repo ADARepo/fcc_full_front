@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import Axios from "axios";
 import setupPoster from './movie/Poster';
+import SearchBar from './movie/SearchBar';
 
 function App() 
 {
@@ -29,9 +30,13 @@ function App()
 	}, [])
 
 	return (
-	<div className="App">
-		{movies}
-	</div>
+		<div className="background-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+			<SearchBar />
+			<div className="search-area" >
+				<br></br>
+				{movies}
+			</div>
+		</div>
 	);
 }
 

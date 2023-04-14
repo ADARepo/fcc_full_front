@@ -5,9 +5,8 @@ function setupPoster(movie)
     const posterUrl = movie.poster;
 
     return (
-        <div>
-            <h1>{movie.title}</h1>
-            <img src={posterUrl} alt="Poster image" />
+        <div style ={{margin: '20px'}}>
+            <img src={posterUrl} style={{width: '200px', height: 'auto'}} alt="Poster image" />
         </div>
     );
 }
